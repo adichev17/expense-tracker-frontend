@@ -18,9 +18,8 @@ const IncomeButton: FunctionComponent<IIncomeButton> = ({ navigation, route }) =
 
   return (
     <TouchableOpacity onPress={onPressHandler} activeOpacity={AppConstants.ActiveOpacity}>
-      <LinearGradient style={[styles.expandButton, styles.shadow]} colors={["#CCF0FA", "#E5E5E5"]}>
-        <BigBlackPlus />
-        <Text style={styles.header}>Income</Text>
+      <LinearGradient style={[styles.expandButton, styles.shadow]} end={{ x: 0.9, y: 0.2 }} colors={["#CCF0FA", "#E5E5E5"]}>
+        <Text style={styles.header}>Доход</Text>
       </LinearGradient>
     </TouchableOpacity>
   );
@@ -28,11 +27,11 @@ const IncomeButton: FunctionComponent<IIncomeButton> = ({ navigation, route }) =
 
 const styles = StyleSheet.create({
   expandButton: {
-    height: Dimensions.get("window").width / 2 - 38,
+    height: (Dimensions.get("window").width / 2 - 38) / 2 - 7,
     width: Dimensions.get("window").width / 2 - 38,
     borderRadius: 14,
-    paddingLeft: 25,
-    paddingTop: 26,
+    alignItems: "center",
+    justifyContent: "center",
   },
   shadow: {
     shadowColor: "#D6EBF1",
@@ -46,8 +45,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontFamily: AppConstants.FontExtra,
-    marginTop: 18,
-    fontSize: 16,
+    fontSize: 14,
   },
   desc: {
     fontFamily: AppConstants.FontRegular,

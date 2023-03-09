@@ -30,6 +30,7 @@ const CardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
         [route.params.id],
         (transaction: SQLTransaction, result: SQLResultSet) => {
           setCard(result.rows._array[0]);
+          //alert("cards - " + JSON.stringify(result.rows._array))
         }
       );
     });
@@ -61,21 +62,21 @@ const CardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
           date={card?.endDate}
         />
         <TouchableOpacity onPress={onGoToChangeCardInformationHandler} activeOpacity={AppConstants.ActiveOpacity}>
-          <Text style={styles.goChange}>Change a card information</Text>
+          <Text style={styles.goChange}>Изменить данные карты</Text>
         </TouchableOpacity>
         <View style={styles.block}>
-          <Label>Actions</Label>
+          <Label>Действия</Label>
           <View style={styles.blockContent}>
             <IncomeButton navigation={navigation} route={route} />
             <View style={styles.rightButtons}>
-              <TransferButton navigation={navigation} route={route} isActive={cardsLength > 1} />
+              {/* <TransferButton navigation={navigation} route={route} isActive={cardsLength > 1} /> */}
               <ExpenseButton navigation={navigation} route={route} />
             </View>
           </View>
         </View>
         {Boolean(transactions.length) && (
           <View style={styles.block}>
-            <Label>Transactions</Label>
+            <Label>Транзакции</Label>
             <View style={styles.transactionsData}>
               {transactions.map((transaction: ITransaction) => {
                 return <Transaction navigation={navigation} key={transaction.id} data={transaction} />;

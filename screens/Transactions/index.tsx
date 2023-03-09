@@ -26,7 +26,7 @@ const TransactionsScreen: FunctionComponent<IScreen> = ({ navigation }) => {
     <TheLayout>
       <TopPanel withBack navigation={navigation} backPathname="Home" />
       <View style={styles.body}>
-        <Label>All Transactions</Label>
+        <Label>Все транзакции</Label>
         <View style={styles.data}>
           {transactions.map((_transaction: ITransaction) => {
             return <Transaction navigation={navigation} key={_transaction.id} data={_transaction} />;

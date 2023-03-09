@@ -39,52 +39,28 @@ const AddCardScreen: FunctionComponent<IScreen> = ({ navigation }) => {
   return (
     <TheLayout>
       <TopPanel navigation={navigation} withBack isGoBack />
-      <View style={styles.body}>
-        <Label>Choose skin</Label>
-        <View style={styles.skins}>
-          {AppConstants.CardSkins.map(skin => {
-            return <Skin key={skin.id} setState={setSkinID} state={skinID} colors={skin.colors} id={skin.id} />;
-          })}
-        </View>
+      <View style={styles.body}>          
         <View style={styles.mt}>
-          <Label>Card info</Label>
+          <Label>Наименование кошелька</Label>
           <View style={styles.cardInfoContent}>
             <Input
               state={initialSum}
               setState={setInitialSum}
               keyboardType="decimal-pad"
-              placeholder="Enter initial sum..."
-            />
-            <Input
-              mask="9999 9999 9999 9999"
-              state={cardNumber}
-              setState={setCardNumber}
-              keyboardType="decimal-pad"
-              placeholder="Enter card number..."
-            />
-            <Input
-              mask="99/99/9999"
-              state={endDate}
-              setState={setEndDate}
-              keyboardType="decimal-pad"
-              placeholder="Enter end date..."
+              placeholder="Введите наименование кошелька"
             />
           </View>
+          <Label>Цвет кошелька</Label>  
+          <View style={styles.skins}>
+          {AppConstants.CardSkins.map(skin => {
+            return <Skin key={skin.id} setState={setSkinID} state={skinID} colors={skin.colors} id={skin.id} />;
+          })}
         </View>
-        <View style={{ marginTop: 35 }}>
-          <Label>Payment System</Label>
-          <View style={styles.paymentSystems}>
-            <PaymentSystem system="visa" isActive={paymentSystem === "Visa"} onPress={() => setPaymentSystem("Visa")} />
-            <PaymentSystem
-              system="paypal"
-              isActive={paymentSystem === "Paypal"}
-              onPress={() => setPaymentSystem("Paypal")}
-            />
-          </View>
         </View>
+
         <View style={styles.createButton}>
           <Button variant="primary" onPressHandler={onCreateCardPressHandler} isValidate={validateData()}>
-            Create
+            Создать
           </Button>
         </View>
       </View>
@@ -104,14 +80,14 @@ const styles = StyleSheet.create({
     paddingBottom: 35,
   },
   skins: {
-    marginTop: 23,
-    height: 175,
+    marginTop: 35,
+    height: 320,
     flexDirection: "row",
     justifyContent: "space-between",
   },
   cardInfoContent: {
     marginTop: 23,
-    height: 200,
+    height: 100,
     flexDirection: "column",
     justifyContent: "space-between",
   },

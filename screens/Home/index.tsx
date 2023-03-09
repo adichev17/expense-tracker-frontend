@@ -27,7 +27,7 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
         "SELECT * FROM cards ORDER BY id DESC",
         [],
         (transaction: SQLTransaction, result: SQLResultSet) => {
-          setCards(result.rows._array);
+          setCards(result.rows._array);alert(JSON.stringify(result.rows._array));
         }
       );
     });
@@ -46,6 +46,7 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
         [],
         (transaction: SQLTransaction, result: SQLResultSet) => {
           setTransactions(result.rows._array);
+          alert("transactions - " + JSON.stringify(result.rows._array))
         }
       );
     });
@@ -75,30 +76,12 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
           </ScrollView>
         </View>
         <View style={styles.body}>
-          <Label>Goals</Label>
-          <View style={styles.goalsContent}>
-            {goals.map(goal => {
-              return (
-                <Goal
-                  key={goal.id}
-                  id={goal.id}
-                  name={goal.name}
-                  currentAmount={goal.currentAmount}
-                  finalAmount={goal.finalAmount}
-                  navigation={navigation}
-                />
-              );
-            })}
-            <View style={styles.addGoal}>
-              <AddGoal navigation={navigation} />
-            </View>
-          </View>
           {Boolean(transactions.length) && (
             <View>
               <View style={styles.transactionsHeader}>
-                <Label>Last Transactions</Label>
+                <Label>Последние транзакции</Label>
                 <Pressable onPress={onGoToTransactions}>
-                  <Text style={styles.allTransactions}>All</Text>
+                  <Text style={styles.allTransactions}>Все</Text>
                 </Pressable>
               </View>
               <View style={styles.transactionsBody}>

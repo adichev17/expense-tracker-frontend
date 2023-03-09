@@ -63,15 +63,26 @@ const EditCardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
     <TheLayout>
       <TopPanel navigation={navigation} withBack isGoBack />
       <View style={styles.body}>
-        <Label>Edit skin</Label>
+        <Label>Изменить цвет</Label>
         <View style={styles.skins}>
           {AppConstants.CardSkins.map(skin => {
             return <Skin key={skin.id} setState={setActiveSkin} state={activeSkin} {...skin} />;
           })}
         </View>
-        <View style={styles.mt}>
+        <View style={styles.mt}>   
+        <Label>Изменить наименование карты</Label>  
+        <View style={styles.cardInfoContent}>
+        <Input
+            defaultValue={cardNumber}
+            state={cardNumber}
+            setState={setCardNumber}
+            placeholder="Введите наименование карты"
+          /> 
+        </View>
+
+          {/* 
           <Label>Edit card info</Label>
-          <View style={styles.cardInfoContent}>
+                    <View style={styles.cardInfoContent}>
             {Boolean(cardNumber) ? (
               <Input
                 defaultValue={cardNumber}
@@ -97,8 +108,9 @@ const EditCardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
               <Input state={endDate} setState={setEndDate} placeholder="Enter end date..." />
             )}
           </View>
+          */}
         </View>
-        <View style={{ marginTop: 35 }}>
+        {/*<View style={{ marginTop: 35 }}>
           <Label>Edit payment system</Label>
           <View style={styles.paymentSystems}>
             <PaymentSystem
@@ -112,15 +124,15 @@ const EditCardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
               onPress={() => setActivePaymentSystem("Paypal")}
             />
           </View>
-        </View>
+        </View>*/}
         <View style={styles.createButton}>
           <Button variant="primary" onPressHandler={onUpdateCardPressHandler}>
-            Save
+            Сохранить
           </Button>
         </View>
         <View style={styles.removeButton}>
           <Button variant="danger" onPressHandler={onRemoveCardPressHandler}>
-            Remove
+            Удалить
           </Button>
         </View>
       </View>
@@ -130,13 +142,13 @@ const EditCardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   body: {
-    marginTop: 32,
+    marginTop: 45,
   },
   mt: {
-    marginTop: 25,
+    marginTop: 5,
   },
   createButton: {
-    marginTop: 60,
+    marginTop: 150,
   },
   removeButton: {
     marginTop: 12,
@@ -144,7 +156,7 @@ const styles = StyleSheet.create({
   },
   skins: {
     marginTop: 23,
-    height: 175,
+    height: 135,
     flexDirection: "row",
     justifyContent: "space-between",
   },

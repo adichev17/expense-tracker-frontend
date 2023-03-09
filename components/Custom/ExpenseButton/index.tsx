@@ -18,7 +18,7 @@ const ExpenseButton: FunctionComponent<IExpenseButton> = ({ navigation, route })
   return (
     <TouchableOpacity onPress={onPressHandler} activeOpacity={AppConstants.ActiveOpacity}>
       <LinearGradient colors={["#FACCD2", "#FECDF4"]} end={{ x: 0.9, y: 0.2 }} style={[styles.button, styles.shadow]}>
-        <Text style={styles.text}>Expense</Text>
+        <Text style={styles.text}>Расход</Text>
       </LinearGradient>
     </TouchableOpacity>
   );

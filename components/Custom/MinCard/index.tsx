@@ -34,27 +34,22 @@ const MinCard: FunctionComponent<IMinCard> = ({
   return (
     <TouchableOpacity activeOpacity={AppConstants.ActiveOpacity} onPress={navigateToCard}>
       <LinearGradient colors={AppConstants.CardSkins[colorId].colors} end={{ x: 0.9, y: 0.2 }} style={styles.minCard}>
-        <View style={styles.paymentSystem}>{paymentSystem === "Visa" ? <VisaSVG /> : <PayPalSVG />}</View>
+        <View style={styles.paymentSystem}>
+        <Text style={styles.name}>Кошелек 1</Text>
+        </View>
         <View>
           <Text style={styles.price}>{toPriceFormat(balance)} ₽</Text>
-          <Text style={styles.typeBalance}>{paymentSystem} Balance</Text>
+          <Text style={styles.typeBalance}>Баланс кошелька</Text>
         </View>
-        <View style={styles.cardInfo}>
-          <Text style={styles.cardInfoText}>
-            ****{" "}
-            {number[number.length - 4] +
-              number[number.length - 3] +
-              number[number.length - 2] +
-              number[number.length - 1]}
-          </Text>
+        {/*<View style={styles.cardInfo}>
           <Text style={[styles.cardInfoText, styles.cardInfoDate]}>
             {date.slice(3)[0]}
             {date.slice(3)[1]}
             {date.slice(3)[2]}
             {date.slice(3)[5]}
             {date.slice(3)[6]}
-          </Text>
-        </View>
+  </Text>
+        </View>*/}
       </LinearGradient>
     </TouchableOpacity>
   );
@@ -63,7 +58,7 @@ const MinCard: FunctionComponent<IMinCard> = ({
 const styles = StyleSheet.create({
   minCard: {
     height: 175,
-    width: 161,
+    width: 191,
     borderRadius: 14,
     marginLeft: 12,
     paddingHorizontal: 24,
@@ -81,9 +76,12 @@ const styles = StyleSheet.create({
     shadowRadius: 14.78,
     elevation: 14,
   },
+  name: { 
+    fontSize: 20,
+  },
   price: {
     fontFamily: AppConstants.FontExtra,
-    fontSize: 14,
+    fontSize: 18,
   },
   typeBalance: {
     fontSize: 10,

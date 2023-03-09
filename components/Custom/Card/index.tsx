@@ -33,13 +33,13 @@ const Card: FunctionComponent<ICard> = ({
       }}
     >
       <LinearGradient colors={AppConstants.CardSkins[colorId].colors} end={{ x: 0.9, y: 0.2 }} style={styles.minCard}>
-        {paymentSystem === "Visa" ? <VisaSVG /> : <PayPalSVG />}
+        <Text style={styles.name}>Основной кошелек</Text>
         <View>
           <Text style={styles.price}>{toPriceFormat(balance)} ₽</Text>
-          <Text style={styles.typeBalance}>{paymentSystem} Balance</Text>
+          <Text style={styles.typeBalance}>Баланс кошелька</Text>
         </View>
         <View style={styles.cardInfo}>
-          <Text style={styles.cardInfoText}>
+          {/*<Text style={styles.cardInfoText}>
             ****{" "}
             {number[number.length - 4] +
               number[number.length - 3] +
@@ -53,6 +53,7 @@ const Card: FunctionComponent<ICard> = ({
             {date.slice(3)[5]}
             {date.slice(3)[6]}
           </Text>
+          */}
         </View>
       </LinearGradient>
     </TouchableOpacity>
@@ -81,7 +82,10 @@ const styles = StyleSheet.create({
   },
   price: {
     fontFamily: AppConstants.FontExtra,
-    fontSize: 16,
+    fontSize: 18,
+  },
+  name: { 
+    fontSize: 20,
   },
   typeBalance: {
     fontSize: 11,

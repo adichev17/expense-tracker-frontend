@@ -58,7 +58,7 @@ const TransactionScreen: FunctionComponent<IScreen> = ({ navigation, route }) =>
           </Text>
           <Text style={[styles.center, styles.transactionDate]}>{toDateFormat(currentTransaction?.date || "")}</Text>
           <Text style={[styles.center, styles.transactionAmount]}>
-            {currentTransaction?.actionType === "income" ? "+ " : "- "}
+            {currentTransaction?.actionType === "доход" ? "+ " : "- "}
             {toPriceFormat(currentTransaction?.amount || 0)} ₽
           </Text>
         </View>

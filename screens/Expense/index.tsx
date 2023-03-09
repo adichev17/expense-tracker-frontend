@@ -49,12 +49,12 @@ const ExpenseScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
     <TheLayout>
       <TopPanel withBack navigation={navigation} backPathname="Card" backParams={{ id: route.params.cardId }} />
       <View style={styles.body}>
-        <Label>Expense</Label>
+        <Label>Расход</Label>
         <View style={styles.headerInput}>
-          <Input state={sum} setState={setSum} placeholder="Enter expense sum..." keyboardType="decimal-pad" />
+          <Input state={sum} setState={setSum} placeholder="Введите сумму расхода" keyboardType="decimal-pad" />
         </View>
         <View style={styles.headerType}>
-          <Label>Expense Type</Label>
+          <Label>Категория расхода</Label>
           <View style={styles.bodyTypes}>
             {returnConfigurationData().ExpenseTypes.map(_expenseType => {
               return (
@@ -65,14 +65,14 @@ const ExpenseScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
                   onPressHandler={() => {
                     setExpenseTypeID(_expenseType.id);
                   }}
-                />
+                /> 
               );
             })}
           </View>
         </View>
         <View style={styles.actionButton}>
           <Button variant="danger" onPressHandler={onCreateTransactionPressHandler} isValidate={validateData()}>
-            Expense
+            Добавить расход
           </Button>
         </View>
       </View>

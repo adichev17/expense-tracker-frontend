@@ -49,12 +49,12 @@ const IncomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
     <TheLayout>
       <TopPanel withBack navigation={navigation} backPathname="Card" backParams={{ id: route.params.cardId }} />
       <View style={styles.body}>
-        <Label>Income</Label>
+        <Label>Доход</Label>
         <View style={styles.headerInput}>
-          <Input state={sum} setState={setSum} placeholder="Enter income sum..." keyboardType="decimal-pad" />
+          <Input state={sum} setState={setSum} placeholder="Введите сумму дохода" keyboardType="decimal-pad" />
         </View>
         <View style={styles.headerType}>
-          <Label>Income Type</Label>
+          <Label>Категория дохода</Label>
           <View style={styles.bodyTypes}>
             {returnConfigurationData().IncomeTypes.map(_incomeType => {
               return (
@@ -72,7 +72,7 @@ const IncomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
         </View>
         <View style={styles.actionButton}>
           <Button onPressHandler={onCreateTransactionPressHandler} isValidate={validateData()}>
-            Income
+            Добавить доход
           </Button>
         </View>
       </View>
