@@ -18,9 +18,7 @@ interface IScreen {
 interface ICard {
   id: number;
   balance: number;
-  paymentSystem: string;
-  number: string;
-  endDate: string;
+  name: string;
   colorId: number;
 }
 
@@ -32,13 +30,19 @@ interface IGoal {
   currentAmount: number;
 }
 
+interface ICategory {
+  id: number;
+  categoryName: string;
+  imageUri: string;
+  actionTypeId: number;
+}
+
 interface ITransaction {
   id: number;
-  cardId: number;
+  card?: ICard;
   amount: number;
   date: string;
-  type: string;
-  actionType: string;
+  category?: ICategory;
 }
 
 type IPaymentSystem = "Visa" | "Paypal" | "Mir";

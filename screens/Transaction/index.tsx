@@ -15,8 +15,40 @@ const TransactionScreen: FunctionComponent<IScreen> = ({ navigation, route }) =>
   const [currentTransaction, setCurrentTransaction] = useState<ITransaction>();
   const [transactions, setTransactions] = useState<ITransaction[]>();
 
+  const card = { 
+    id : 1,
+    name: "Кошелек 1",
+    balance: 50,
+    colorId: 1
+  }
+  const categoryProduct = { 
+    id: 1,
+    categoryName: "Продукты",
+    imageUri : "https://reactnative.dev/img/tiny_logo.png",
+    actionTypeId: 1,
+  }
+
+  const currentTransactionData = { 
+    id : 8,
+    card: card,
+    amount: 6,
+    date: "1678392327699",
+    category: categoryProduct, // Lazy Load
+  };
+
+  const secondtTransactionData = [{ 
+    id : 9,
+    card: card,
+    amount: 100,
+    date: "1678392327699",
+    category: categoryProduct, // Lazy Load
+  }];
+
+
   useEffect(() => {
-    Database.transaction((transaction: SQLTransaction) => {
+    setCurrentTransaction(currentTransactionData);
+    setTransactions(secondtTransactionData)
+    {/*Database.transaction((transaction: SQLTransaction) => {
       transaction.executeSql(
         "SELECT * FROM transactions WHERE id = ?",
         [route.params.id],
@@ -31,7 +63,7 @@ const TransactionScreen: FunctionComponent<IScreen> = ({ navigation, route }) =>
           );
         }
       );
-    });
+    });*/}
   }, [route]);
 
   return (
@@ -40,25 +72,19 @@ const TransactionScreen: FunctionComponent<IScreen> = ({ navigation, route }) =>
       <View style={styles.card}>
         <View style={styles.imageWrapper}>
           <Image
-            source={
-              returnConfigurationData().AllTransactionTypes.find(
-                transactionType => transactionType.id === Number(currentTransaction?.type)
-              )?.image
-            }
+            source={{ 
+              uri : currentTransaction?.category?.imageUri
+            }}
             style={styles.image}
           />
         </View>
         <View>
           <Text style={[styles.center, styles.transactionType]}>
-            {
-              returnConfigurationData().AllTransactionTypes.find(
-                transactionType => transactionType.id === Number(currentTransaction?.type)
-              )?.title
-            }
+            {currentTransaction?.category?.categoryName}
           </Text>
           <Text style={[styles.center, styles.transactionDate]}>{toDateFormat(currentTransaction?.date || "")}</Text>
           <Text style={[styles.center, styles.transactionAmount]}>
-            {currentTransaction?.actionType === "доход" ? "+ " : "- "}
+            {currentTransaction?.category?.actionTypeId === 2 ? "+ " : "- "}
             {toPriceFormat(currentTransaction?.amount || 0)} ₽
           </Text>
         </View>

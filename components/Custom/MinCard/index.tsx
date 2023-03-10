@@ -8,21 +8,17 @@ import PayPalSVG from "components/SVGs/PayPal";
 
 interface IMinCard {
   navigation: INavigation;
-  paymentSystem?: string;
-  number?: string;
   id: number;
+  name: string,
   balance: number;
-  date: string;
   colorId: number;
 }
 
 const MinCard: FunctionComponent<IMinCard> = ({
   navigation,
-  paymentSystem = "Visa",
   id = 0,
-  number = "0000 0000 0000 0000",
+  name = "Кошелек",
   balance = 45000,
-  date = "08/23",
   colorId = 0,
 }) => {
   function navigateToCard(): void {
@@ -35,7 +31,7 @@ const MinCard: FunctionComponent<IMinCard> = ({
     <TouchableOpacity activeOpacity={AppConstants.ActiveOpacity} onPress={navigateToCard}>
       <LinearGradient colors={AppConstants.CardSkins[colorId].colors} end={{ x: 0.9, y: 0.2 }} style={styles.minCard}>
         <View style={styles.paymentSystem}>
-        <Text style={styles.name}>Кошелек 1</Text>
+        <Text style={styles.name}>{(name)}</Text>
         </View>
         <View>
           <Text style={styles.price}>{toPriceFormat(balance)} ₽</Text>

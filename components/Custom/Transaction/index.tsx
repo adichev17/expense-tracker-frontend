@@ -14,34 +14,27 @@ const Transaction: FunctionComponent<ITransactionC> = ({ navigation, data = {} }
   function goToTransaction() {
     navigation.push("Transaction", { id: data.id });
   }
-
   return (
     <TouchableOpacity activeOpacity={AppConstants.ActiveOpacity} onPress={goToTransaction}>
       <View style={styles.transaction}>
         <View style={styles.transactionInfo}>
           <View style={styles.transactionType}>
             <Image
-              source={
-                returnConfigurationData().AllTransactionTypes.find(
-                  transactionType => transactionType.id === Number(data.type)
-                )?.image
-              }
+              source={{
+                uri : data.category?.imageUri
+              }}
               style={styles.transactionImage}
             />
           </View>
           <View style={styles.transactionInfoText}>
             <Text style={styles.transactionInfoHeader}>
-              {
-                returnConfigurationData().AllTransactionTypes.find(
-                  transactionType => transactionType.id === Number(data.type)
-                )?.title
-              }
+              {data.category?.categoryName}
             </Text>
             <Text style={styles.transactionInfoDate}>{toDateFormat(data.date || "")}</Text>
           </View>
         </View>
         <Text style={styles.transactionText}>
-          {data.actionType === "income" ? "+ " : "- "}
+          {data.category?.actionTypeId === 2 ? "+ " : "- "}
           {toPriceFormat(data.amount || 0)} ₽
         </Text>
       </View>

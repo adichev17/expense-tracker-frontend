@@ -13,7 +13,7 @@ export interface IIncomeExpenseType {
 
 const IncomeTypes: IIncomeExpenseType[] = [
   { id: 0, image: Scholarship, title: "Scholarship" },
-  { id: 1, image: Investment, title: "Investment" },
+  { id: 1, image: Investment, title: "Продукы" },
   { id: 4, image: Salary, title: "Salary" },
 ];
 

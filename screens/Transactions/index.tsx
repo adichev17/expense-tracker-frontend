@@ -10,8 +10,37 @@ import Label from "components/UI/Label";
 const TransactionsScreen: FunctionComponent<IScreen> = ({ navigation }) => {
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
 
+  const card = { 
+    id : 1,
+    name: "Кошелек 1",
+    balance: 50,
+    colorId: 1
+  }
+  const categoryProduct = { 
+    id: 1,
+    categoryName: "Продукты",
+    imageUri : "https://reactnative.dev/img/tiny_logo.png",
+    actionTypeId: 1,
+  }
+
+  const transactionsData = [{ 
+    id : 8,
+    card: card,
+    amount: 6,
+    date: "1678392327699",
+    category: categoryProduct, // Lazy Load
+  },
+  { 
+    id : 9,
+    card: card,
+    amount: 100,
+    date: "1678392327699",
+    category: categoryProduct, // Lazy Load
+  }];
+
   useEffect(() => {
-    Database.transaction((transaction: SQLTransaction) => {
+    setTransactions(transactionsData);
+    /*Database.transaction((transaction: SQLTransaction) => {
       transaction.executeSql(
         "SELECT * FROM transactions ORDER BY id DESC",
         [],
@@ -19,7 +48,7 @@ const TransactionsScreen: FunctionComponent<IScreen> = ({ navigation }) => {
           setTransactions(result.rows._array);
         }
       );
-    });
+    });*/
   }, []);
 
   return (

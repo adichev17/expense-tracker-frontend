@@ -14,15 +14,55 @@ import Label from "components/UI/Label";
 
 const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
   const [cards, setCards] = useState<ICard[]>([]);
-  const [goals, setGoals] = useState<IGoal[]>([]);
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
 
   function onGoToTransactions(): void {
     navigation.push("Transactions");
   }
 
+  const cardsData = [{ 
+    id : 1,
+    name: "Кошелек 1",
+    balance: 50,
+    colorId: 1
+  }];
+
+  const card = { 
+    id : 1,
+    name: "Кошелек 1",
+    balance: 50,
+    colorId: 1
+  }
+  const categoryProduct = { 
+    id: 1,
+    categoryName: "Продукты",
+    imageUri : "https://reactnative.dev/img/tiny_logo.png",
+    actionTypeId: 1,
+  }
+
+  const transactionsData = [{ 
+    id : 8,
+    card: card,
+    amount: 6,
+    date: "1678392327699",
+    category: categoryProduct, // Lazy Load
+  }];
+
   useEffect(() => {
-    Database.transaction((transaction: SQLTransaction) => {
+
+    /**
+      @todo: Get Cards
+    **/
+    {/*fetch("https://dog.ceo/api/breeds/image/random")
+    .then((res) => {
+      if (res.status !== 200) {
+        alert('Error');
+      }
+      return res.json();
+    })
+    .then((data) => {alert(JSON.stringify(data)); setCards(data.message)});*/}
+    setCards(cardsData)
+    {/*Database.transaction((transaction: SQLTransaction) => {
       transaction.executeSql(
         "SELECT * FROM cards ORDER BY id DESC",
         [],
@@ -50,6 +90,9 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
         }
       );
     });
+  */}
+
+  setTransactions(transactionsData);
   }, [route]);
 
   return (
@@ -64,11 +107,9 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
                 <MinCard
                   key={card.id}
                   id={card.id}
-                  number={card.number}
-                  date={card.endDate}
+                  name={card.name}
                   colorId={card.colorId}
                   balance={card.balance}
-                  paymentSystem={card.paymentSystem}
                   navigation={navigation}
                 />
               );
