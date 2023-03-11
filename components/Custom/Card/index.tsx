@@ -8,19 +8,17 @@ import PayPalSVG from "components/SVGs/PayPal";
 
 interface ICard {
   onPressHandler?: () => void;
-  paymentSystem?: string;
-  number?: string;
+  id?: number;
   balance?: number;
-  date?: string;
+  name?: string;
   colorId?: number;
 }
 
 const Card: FunctionComponent<ICard> = ({
   onPressHandler = undefined,
-  paymentSystem = "Visa",
   balance = 45000,
-  number = "0000 0000 0000 0000",
-  date = "08/23",
+  name = "",
+  id = 0,
   colorId = 0,
 }) => {
   return (
@@ -33,7 +31,7 @@ const Card: FunctionComponent<ICard> = ({
       }}
     >
       <LinearGradient colors={AppConstants.CardSkins[colorId].colors} end={{ x: 0.9, y: 0.2 }} style={styles.minCard}>
-        <Text style={styles.name}>Основной кошелек</Text>
+        <Text style={styles.name}>{name}</Text>
         <View>
           <Text style={styles.price}>{toPriceFormat(balance)} ₽</Text>
           <Text style={styles.typeBalance}>Баланс кошелька</Text>

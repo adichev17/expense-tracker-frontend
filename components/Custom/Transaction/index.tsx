@@ -21,15 +21,13 @@ const Transaction: FunctionComponent<ITransactionC> = ({ navigation, data = {} }
           <View style={styles.transactionType}>
             <Image
               source={{
-                uri : data.category?.imageUri
+                uri: data.category?.imageUri,
               }}
               style={styles.transactionImage}
             />
           </View>
           <View style={styles.transactionInfoText}>
-            <Text style={styles.transactionInfoHeader}>
-              {data.category?.categoryName}
-            </Text>
+            <Text style={styles.transactionInfoHeader}>{data.category?.categoryName}</Text>
             <Text style={styles.transactionInfoDate}>{toDateFormat(data.date || "")}</Text>
           </View>
         </View>

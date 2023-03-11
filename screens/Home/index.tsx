@@ -20,49 +20,98 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
     navigation.push("Transactions");
   }
 
-  const cardsData = [{ 
-    id : 1,
-    name: "Кошелек 1",
-    balance: 50,
-    colorId: 1
-  }];
+  const cardsData = [
+    {
+      id: 1,
+      name: "Кошелек 1",
+      balance: 50,
+      colorId: 1,
+    },
+  ];
 
-  const card = { 
-    id : 1,
+  const card = {
+    id: 1,
     name: "Кошелек 1",
     balance: 50,
-    colorId: 1
-  }
-  const categoryProduct = { 
+    colorId: 1,
+  };
+  const categoryProduct = {
     id: 1,
     categoryName: "Продукты",
-    imageUri : "https://reactnative.dev/img/tiny_logo.png",
+    imageUri: "https://reactnative.dev/img/tiny_logo.png",
     actionTypeId: 1,
-  }
+  };
 
-  const transactionsData = [{ 
-    id : 8,
-    card: card,
-    amount: 6,
-    date: "1678392327699",
-    category: categoryProduct, // Lazy Load
-  }];
+  const transactionsData = [
+    {
+      id: 8,
+      card: card,
+      amount: 6,
+      date: "1678392327699",
+      category: categoryProduct, // Lazy Load
+    },
+  ];
 
   useEffect(() => {
-
     /**
       @todo: Get Cards
     **/
-    {/*fetch("https://dog.ceo/api/breeds/image/random")
-    .then((res) => {
-      if (res.status !== 200) {
-        alert('Error');
-      }
-      return res.json();
-    })
-    .then((data) => {alert(JSON.stringify(data)); setCards(data.message)});*/}
-    setCards(cardsData)
-    {/*Database.transaction((transaction: SQLTransaction) => {
+    fetch("http://192.168.0.106:54249/api/card/1")
+      .then(res => {
+        if (res.status !== 200) {
+          alert("Error-" + res.status);
+        }
+        return res.json();
+      })
+      .then(data => {
+        //alert(JSON.stringify(data));
+        setCards(data);
+      })
+      .catch(function (error) {
+        alert("Error-" + error.message);
+      });
+
+    fetch("http://192.168.0.106:54249/api/expense?userId=1&rows=5")
+      .then(res => {
+        if (res.status !== 200) {
+          alert("Error-" + res.status);
+        }
+        return res.json();
+      })
+      .then(data => {
+        //alert(JSON.stringify(data));
+        var allTransactions: ITransaction[] = [];
+        var transactions2 = data.map(
+          (item: { card: { id: number; balance: number; name: string; colorId: number }; transactions: any }) => {
+            //alert(JSON.stringify(item.transactions));
+            var cardTransactions = item.transactions.map(
+              (transactionItem: {
+                id: number;
+                amount: number;
+                date: string;
+                category: { id: number; categoryName: string; imageUri: string; actionTypeId: number };
+              }) => {
+                return {
+                  id: transactionItem.id,
+                  card: item.card,
+                  amount: transactionItem.amount,
+                  date: transactionItem.date,
+                  category: transactionItem.category,
+                };
+              }
+            );
+            allTransactions.push(...cardTransactions);
+          }
+        );
+        //alert(JSON.stringify(allTransactions));
+        //alert(JSON.stringify(transactions))
+        setTransactions(allTransactions);
+      })
+      .catch(function (error) {
+        alert("Error-" + error.message);
+      });
+    {
+      /*Database.transaction((transaction: SQLTransaction) => {
       transaction.executeSql(
         "SELECT * FROM cards ORDER BY id DESC",
         [],
@@ -90,9 +139,10 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
         }
       );
     });
-  */}
+  */
+    }
 
-  setTransactions(transactionsData);
+    setTransactions(transactionsData);
   }, [route]);
 
   return (

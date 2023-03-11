@@ -23,8 +23,30 @@ const CardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
     });
   }
 
+
+  const cardData = { 
+    id: 1,
+    name: "Кошелек 1",
+    balance: 50,
+    colorId: 1
+  }
+  const categoryProduct = { 
+    id: 1,
+    categoryName: "Продукты",
+    imageUri : "https://reactnative.dev/img/tiny_logo.png",
+    actionTypeId: 1,
+  }
+
+  const transactionsData = [{ 
+    id : 8,
+    card: cardData,
+    amount: 6,
+    date: "1678392327699",
+    category: categoryProduct, // Lazy Load
+  }];
+
   useEffect(() => {
-    Database.transaction((transaction: SQLTransaction) => {
+    /*Database.transaction((transaction: SQLTransaction) => {
       transaction.executeSql(
         "SELECT * FROM cards WHERE id = ?",
         [route.params.id],
@@ -42,7 +64,9 @@ const CardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
           setTransactions(result.rows._array);
         }
       );
-    });
+    });*/
+    setCard(cardData);
+    setTransactions(transactionsData);
     Database.transaction((transaction: SQLTransaction) => {
       transaction.executeSql("SELECT * FROM cards WHERE 1", [], (transaction: SQLTransaction, result: SQLResultSet) => {
         setCardsLength(result.rows._array.length);
@@ -55,11 +79,11 @@ const CardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
       <TopPanel withBack navigation={navigation} backPathname={"Home"} />
       <View style={styles.body}>
         <Card
-          number={card?.number}
+          key={card?.id}
+          id={card?.id}
+          name={card?.name}
           colorId={card?.colorId}
           balance={card?.balance}
-          paymentSystem={card?.paymentSystem}
-          date={card?.endDate}
         />
         <TouchableOpacity onPress={onGoToChangeCardInformationHandler} activeOpacity={AppConstants.ActiveOpacity}>
           <Text style={styles.goChange}>Изменить данные карты</Text>

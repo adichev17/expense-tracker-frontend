@@ -15,40 +15,56 @@ const TransactionScreen: FunctionComponent<IScreen> = ({ navigation, route }) =>
   const [currentTransaction, setCurrentTransaction] = useState<ITransaction>();
   const [transactions, setTransactions] = useState<ITransaction[]>();
 
-  const card = { 
-    id : 1,
+  const card = {
+    id: 1,
     name: "Кошелек 1",
     balance: 50,
-    colorId: 1
-  }
-  const categoryProduct = { 
+    colorId: 1,
+  };
+  const categoryProduct = {
     id: 1,
     categoryName: "Продукты",
-    imageUri : "https://reactnative.dev/img/tiny_logo.png",
+    imageUri: "https://reactnative.dev/img/tiny_logo.png",
     actionTypeId: 1,
-  }
+  };
 
-  const currentTransactionData = { 
-    id : 8,
+  const currentTransactionData = {
+    id: 8,
     card: card,
     amount: 6,
     date: "1678392327699",
     category: categoryProduct, // Lazy Load
   };
 
-  const secondtTransactionData = [{ 
-    id : 9,
-    card: card,
-    amount: 100,
-    date: "1678392327699",
-    category: categoryProduct, // Lazy Load
-  }];
-
+  const secondtTransactionData = [
+    {
+      id: 9,
+      card: card,
+      amount: 100,
+      date: "1678392327699",
+      category: categoryProduct, // Lazy Load
+    },
+  ];
 
   useEffect(() => {
+    fetch("http://192.168.0.106:54249/api/expense/" + route.params.id)
+      .then(res => {
+        if (res.status !== 200) {
+          alert("Error-" + res.status);
+        }
+        return res.json();
+      })
+      .then(data => {
+        //alert(JSON.stringify(data.comment));
+        setCurrentTransaction(data);
+      })
+      .catch(function (error) {
+        alert("Error-" + error.message);
+      });
     setCurrentTransaction(currentTransactionData);
-    setTransactions(secondtTransactionData)
-    {/*Database.transaction((transaction: SQLTransaction) => {
+    setTransactions(secondtTransactionData);
+    {
+      /*Database.transaction((transaction: SQLTransaction) => {
       transaction.executeSql(
         "SELECT * FROM transactions WHERE id = ?",
         [route.params.id],
@@ -63,7 +79,8 @@ const TransactionScreen: FunctionComponent<IScreen> = ({ navigation, route }) =>
           );
         }
       );
-    });*/}
+    });*/
+    }
   }, [route]);
 
   return (
@@ -72,26 +89,29 @@ const TransactionScreen: FunctionComponent<IScreen> = ({ navigation, route }) =>
       <View style={styles.card}>
         <View style={styles.imageWrapper}>
           <Image
-            source={{ 
-              uri : currentTransaction?.category?.imageUri
+            source={{
+              uri: currentTransaction?.category?.imageUri,
             }}
             style={styles.image}
           />
         </View>
         <View>
-          <Text style={[styles.center, styles.transactionType]}>
-            {currentTransaction?.category?.categoryName}
-          </Text>
+          <Text style={[styles.center, styles.transactionType]}>{currentTransaction?.category?.categoryName}</Text>
           <Text style={[styles.center, styles.transactionDate]}>{toDateFormat(currentTransaction?.date || "")}</Text>
           <Text style={[styles.center, styles.transactionAmount]}>
             {currentTransaction?.category?.actionTypeId === 2 ? "+ " : "- "}
             {toPriceFormat(currentTransaction?.amount || 0)} ₽
           </Text>
+          {currentTransaction?.comment !== null ? (
+            <Text style={[styles.center, styles.transactionComment]}>{currentTransaction?.comment || ""} </Text>
+          ) : (
+            ""
+          )}
         </View>
       </View>
       {Boolean(transactions?.length) && (
         <View style={styles.transactionsWrapper}>
-          <Label>More transactions</Label>
+          <Label>Еще</Label>
           <View style={styles.transactionsBody}>
             {transactions?.map(transaction => {
               return <Transaction key={transaction.id} data={transaction} navigation={navigation} />;
@@ -150,6 +170,14 @@ const styles = StyleSheet.create({
     color: "#F9F9F9",
     fontSize: 18,
     marginTop: 16,
+  },
+  transactionComment: {
+    fontFamily: AppConstants.FontExtra,
+    color: "#F9F9F9",
+    fontSize: 16,
+    marginTop: 20,
+    paddingLeft: 5,
+    paddingRight: 5,
   },
   transactionsWrapper: {
     marginTop: 42,

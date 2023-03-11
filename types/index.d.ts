@@ -40,6 +40,7 @@ interface ICategory {
 interface ITransaction {
   id: number;
   card?: ICard;
+  comment?: string;
   amount: number;
   date: string;
   category?: ICategory;
