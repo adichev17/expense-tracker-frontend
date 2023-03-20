@@ -23,27 +23,55 @@ const CardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
     });
   }
 
-
-  const cardData = { 
+  const cardData = {
     id: 1,
     name: "Кошелек 1",
-    balance: 50,
-    colorId: 1
-  }
-  const categoryProduct = { 
+    balance: 50000,
+    colorId: 1,
+  };
+  const categoryProduct = {
     id: 1,
     categoryName: "Продукты",
-    imageUri : "https://reactnative.dev/img/tiny_logo.png",
+    imageUri: "https://reactnative.dev/img/tiny_logo.png",
     actionTypeId: 1,
-  }
+  };
+  const categoryCar = {
+    id: 2,
+    categoryName: "Автомобиль",
+    imageUri: "https://img.icons8.com/fluency/64/sedan.png",
+    actionTypeId: 1,
+  };
 
-  const transactionsData = [{ 
-    id : 8,
-    card: cardData,
-    amount: 6,
-    date: "1678392327699",
-    category: categoryProduct, // Lazy Load
-  }];
+  const transactionsData = [
+    {
+      id: 8,
+      card: cardData,
+      amount: 150,
+      date: "2023-03-14 20:42:08.2809162",
+      category: categoryProduct, // Lazy Load
+    },
+    {
+      id: 9,
+      card: cardData,
+      amount: 300,
+      date: "2023-03-14 20:42:08.2809162",
+      category: categoryCar, // Lazy Load
+    },
+    {
+      id: 10,
+      card: cardData,
+      amount: 1000,
+      date: "2023-03-14 20:42:08.2809162",
+      category: categoryCar, // Lazy Load
+    },
+    {
+      id: 11,
+      card: cardData,
+      amount: 545,
+      date: "2023-03-14 20:42:08.2809162",
+      category: categoryProduct, // Lazy Load
+    },
+  ];
 
   useEffect(() => {
     /*Database.transaction((transaction: SQLTransaction) => {
@@ -78,13 +106,7 @@ const CardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
     <TheLayout>
       <TopPanel withBack navigation={navigation} backPathname={"Home"} />
       <View style={styles.body}>
-        <Card
-          key={card?.id}
-          id={card?.id}
-          name={card?.name}
-          colorId={card?.colorId}
-          balance={card?.balance}
-        />
+        <Card key={card?.id} id={card?.id} name={card?.name} colorId={card?.colorId} balance={card?.balance} />
         <TouchableOpacity onPress={onGoToChangeCardInformationHandler} activeOpacity={AppConstants.ActiveOpacity}>
           <Text style={styles.goChange}>Изменить данные карты</Text>
         </TouchableOpacity>

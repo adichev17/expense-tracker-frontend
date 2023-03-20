@@ -12,15 +12,16 @@ export interface IIncomeExpenseType {
 }
 
 const IncomeTypes: IIncomeExpenseType[] = [
-  { id: 0, image: Scholarship, title: "Scholarship" },
-  { id: 1, image: Investment, title: "Продукы" },
-  { id: 4, image: Salary, title: "Salary" },
+  { id: 5, image: Scholarship, title: "Зарплата" },
+  { id: 6, image: Investment, title: "Инвестиции" },
+  { id: 7, image: Salary, title: "Подарок" },
 ];
 
 const ExpenseTypes: IIncomeExpenseType[] = [
-  { id: 2, image: Saving, title: "Saving" },
-  { id: 3, image: Spending, title: "Spending" },
-  { id: 5, image: Shopping, title: "Shopping" },
+  { id: 1, image: Saving, title: "Продукты" },
+  { id: 2, image: Spending, title: "Автомобиль" },
+  { id: 3, image: Shopping, title: "Образование" },
+  { id: 4, image: Saving, title: "Недвижимость" },
 ];
 
 interface IReturnConfigurationData {

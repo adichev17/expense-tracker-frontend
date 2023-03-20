@@ -41,7 +41,7 @@ const TransactionsScreen: FunctionComponent<IScreen> = ({ navigation }) => {
   ];
 
   useEffect(() => {
-    fetch("http://192.168.0.106:54249/api/expense?userId=1")
+    fetch("http://192.168.0.106:4444/api/expense?userId=1")
       .then(res => {
         if (res.status !== 200) {
           alert("Error-" + res.status);

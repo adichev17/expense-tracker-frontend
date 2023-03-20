@@ -56,7 +56,7 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
     /**
       @todo: Get Cards
     **/
-    fetch("http://192.168.0.106:54249/api/card/1")
+    fetch("http://192.168.0.106:4444/api/card/1")
       .then(res => {
         if (res.status !== 200) {
           alert("Error-" + res.status);
@@ -71,7 +71,7 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
         alert("Error-" + error.message);
       });
 
-    fetch("http://192.168.0.106:54249/api/expense?userId=1&rows=5")
+    fetch("http://192.168.0.106:4444/api/expense?userId=1&rows=5")
       .then(res => {
         if (res.status !== 200) {
           alert("Error-" + res.status);

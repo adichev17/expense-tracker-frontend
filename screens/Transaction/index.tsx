@@ -41,13 +41,13 @@ const TransactionScreen: FunctionComponent<IScreen> = ({ navigation, route }) =>
       id: 9,
       card: card,
       amount: 100,
-      date: "1678392327699",
+      date: "2023-03-14 20:42:08.2809162",
       category: categoryProduct, // Lazy Load
     },
   ];
 
   useEffect(() => {
-    fetch("http://192.168.0.106:54249/api/expense/" + route.params.id)
+    fetch("http://192.168.0.106:4444/api/expense/" + route.params.id)
       .then(res => {
         if (res.status !== 200) {
           alert("Error-" + res.status);

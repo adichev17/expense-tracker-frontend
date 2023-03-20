@@ -9,11 +9,12 @@ import TopPanel from "components/UI/TopPanel";
 import Label from "components/UI/Label";
 import Input from "components/UI/Input";
 import Button from "components/UI/Button";
+import AddIncomeCategory from "components/Custom/AddIncomeCategory";
 
 const IncomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
   const [sum, setSum] = useState<string>("");
+  const [comment, SetComment] = useState<string>("");
   const [incomeTypeID, setIncomeTypeID] = useState<number>(returnConfigurationData().IncomeTypes[0].id);
-
   function onCreateTransactionPressHandler(): void {
     Database.transaction(async (transaction: SQLTransaction) => {
       await transaction.executeSql(
@@ -53,9 +54,21 @@ const IncomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
         <View style={styles.headerInput}>
           <Input state={sum} setState={setSum} placeholder="Введите сумму дохода" keyboardType="decimal-pad" />
         </View>
+        <View style={styles.headerComment}>
+          <Label>Комментарий</Label>
+          <View style={styles.bodyComment}>
+            <Input
+              state={comment}
+              setState={SetComment}
+              placeholder="Комментарий к транзакции (не обязательно)"
+              keyboardType="default"
+            />
+          </View>
+        </View>
         <View style={styles.headerType}>
           <Label>Категория дохода</Label>
           <View style={styles.bodyTypes}>
+            <AddIncomeCategory navigation={navigation} route={route} />
             {returnConfigurationData().IncomeTypes.map(_incomeType => {
               return (
                 <IncomeType
@@ -99,6 +112,12 @@ const styles = StyleSheet.create({
   },
   actionButton: {
     marginTop: 92,
+  },
+  headerComment: {
+    marginTop: 15,
+  },
+  bodyComment: {
+    marginTop: 15,
   },
 });
 

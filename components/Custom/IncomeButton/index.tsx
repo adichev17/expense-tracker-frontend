@@ -11,6 +11,7 @@ interface IIncomeButton {
 
 const IncomeButton: FunctionComponent<IIncomeButton> = ({ navigation, route }) => {
   function onPressHandler(): void {
+    //alert(JSON.stringify(route.params));
     navigation.push("Income", {
       cardId: route.params.id,
     });
@@ -18,7 +19,11 @@ const IncomeButton: FunctionComponent<IIncomeButton> = ({ navigation, route }) =
 
   return (
     <TouchableOpacity onPress={onPressHandler} activeOpacity={AppConstants.ActiveOpacity}>
-      <LinearGradient style={[styles.expandButton, styles.shadow]} end={{ x: 0.9, y: 0.2 }} colors={["#CCF0FA", "#E5E5E5"]}>
+      <LinearGradient
+        style={[styles.expandButton, styles.shadow]}
+        end={{ x: 0.9, y: 0.2 }}
+        colors={["#CCF0FA", "#E5E5E5"]}
+      >
         <Text style={styles.header}>Доход</Text>
       </LinearGradient>
     </TouchableOpacity>
