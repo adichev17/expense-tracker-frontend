@@ -12,6 +12,7 @@ import IncomeScreen from "screens/Income";
 import EditCardScreen from "screens/EditCard";
 import TransactionScreen from "screens/Transaction";
 import IncomeCategoryScreen from "screens/AddIncomeCategory";
+import ExpenseCategoryScreen from "screens/AddExpenseCategory";
 
 interface IRouteScreen {
   name: string;
@@ -31,6 +32,7 @@ const router: IRouteScreen[] = [
   { name: "Transfer", component: TransferScreen },
   { name: "Income", component: IncomeScreen },
   { name: "AddIncomeCategory", component: IncomeCategoryScreen },
+  { name: "AddExpenseCategory", component: ExpenseCategoryScreen },
   { name: "Transaction", component: TransactionScreen },
 ];
 

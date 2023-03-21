@@ -22,6 +22,7 @@ const ExpenseTypes: IIncomeExpenseType[] = [
   { id: 2, image: Spending, title: "Автомобиль" },
   { id: 3, image: Shopping, title: "Образование" },
   { id: 4, image: Saving, title: "Недвижимость" },
+  { id: 8, image: Saving, title: "Техника" },
 ];
 
 interface IReturnConfigurationData {

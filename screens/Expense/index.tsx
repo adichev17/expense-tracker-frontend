@@ -9,9 +9,11 @@ import TopPanel from "components/UI/TopPanel";
 import Label from "components/UI/Label";
 import Input from "components/UI/Input";
 import Button from "components/UI/Button";
+import AddExpenseCategory from "components/Custom/AddExpenseCategory";
 
 const ExpenseScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
   const [sum, setSum] = useState<string>("");
+  const [comment, SetComment] = useState<string>("");
   const [expenseTypeID, setExpenseTypeID] = useState<number>(returnConfigurationData().ExpenseTypes[0].id);
 
   function onCreateTransactionPressHandler(): void {
@@ -53,9 +55,21 @@ const ExpenseScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
         <View style={styles.headerInput}>
           <Input state={sum} setState={setSum} placeholder="Введите сумму расхода" keyboardType="decimal-pad" />
         </View>
+        <View style={styles.headerComment}>
+          <Label>Комментарий</Label>
+          <View style={styles.bodyComment}>
+            <Input
+              state={comment}
+              setState={SetComment}
+              placeholder="Комментарий к транзакции (не обязательно)"
+              keyboardType="default"
+            />
+          </View>
+        </View>
         <View style={styles.headerType}>
           <Label>Категория расхода</Label>
           <View style={styles.bodyTypes}>
+            <AddExpenseCategory navigation={navigation} route={route} />
             {returnConfigurationData().ExpenseTypes.map(_expenseType => {
               return (
                 <ExpenseType
@@ -65,7 +79,7 @@ const ExpenseScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
                   onPressHandler={() => {
                     setExpenseTypeID(_expenseType.id);
                   }}
-                /> 
+                />
               );
             })}
           </View>
@@ -99,6 +113,12 @@ const styles = StyleSheet.create({
   },
   actionButton: {
     marginTop: 92,
+  },
+  headerComment: {
+    marginTop: 15,
+  },
+  bodyComment: {
+    marginTop: 15,
   },
 });
 

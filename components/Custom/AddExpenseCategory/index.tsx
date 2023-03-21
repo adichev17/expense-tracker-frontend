@@ -3,22 +3,22 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import AppConstants from "styles/constants";
 import Plus from "components/SVGs/Plus";
 
-interface IAddIncomeCategory {
+interface IAddExpenseCategory {
   navigation: INavigation;
   route: IRoute;
 }
 
-const AddIncomeCategory: FunctionComponent<IAddIncomeCategory> = ({ navigation, route }) => {
-  function onAddCardPressHandler(): void {
+const AddExpenseCategory: FunctionComponent<IAddExpenseCategory> = ({ navigation, route }) => {
+  function onAddExpenseCategoryPressHandler(): void {
     //alert(JSON.stringify(route.params));
-    navigation.push("AddIncomeCategory", {
+    navigation.push("AddExpenseCategory", {
       cardId: route.params.cardId,
     });
   }
 
   return (
-    <TouchableOpacity onPress={onAddCardPressHandler} activeOpacity={AppConstants.ActiveOpacity}>
-      <View style={styles.addIncomeCategory}>
+    <TouchableOpacity onPress={onAddExpenseCategoryPressHandler} activeOpacity={AppConstants.ActiveOpacity}>
+      <View style={styles.addExpenseCategory}>
         <Plus />
       </View>
     </TouchableOpacity>
@@ -26,7 +26,7 @@ const AddIncomeCategory: FunctionComponent<IAddIncomeCategory> = ({ navigation, 
 };
 
 const styles = StyleSheet.create({
-  addIncomeCategory: {
+  addExpenseCategory: {
     height: 65,
     width: 65,
     justifyContent: "center",
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddIncomeCategory;
+export default AddExpenseCategory;
