@@ -11,6 +11,7 @@ import ExpenseButton from "components/Custom/ExpenseButton";
 import Transaction from "components/Custom/Transaction";
 import TopPanel from "components/UI/TopPanel";
 import Label from "components/UI/Label";
+import StatisticsButton from "components/Custom/StatisticsButton";
 
 const CardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
   const [card, setCard] = useState<ICard>();
@@ -118,6 +119,9 @@ const CardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
               {/* <TransferButton navigation={navigation} route={route} isActive={cardsLength > 1} /> */}
               <ExpenseButton navigation={navigation} route={route} />
             </View>
+          </View>
+          <View style={styles.blockContent}>
+            <StatisticsButton navigation={navigation} route={route} />
           </View>
         </View>
         {Boolean(transactions.length) && (
