@@ -2,20 +2,61 @@
 import React from "react";
 
 // import all the components we are going to use
-import { SafeAreaView, Text, View, StyleSheet, Dimensions, ScrollView } from "react-native";
+import { SafeAreaView, Text, View, StyleSheet, FlatList, TouchableOpacity, ScrollView } from "react-native";
 import { VictoryPie } from "victory-native";
 
 const CardStatisticsPie = ({ data }) => {
-  const [categories, setCategories] = React.useState();
-  // alert(JSON.stringify(data));
+  const victoryPieData = data.map(item => {
+    return {
+      x: item.percentString,
+      y: item.percent,
+    };
+  });
+
+  function renderExpenseSummary(data) {
+    const renderItem = ({ item }) => (
+      <TouchableOpacity
+        style={{
+          flexDirection: "row",
+          height: 40,
+          paddingHorizontal: 30,
+          borderRadius: 10,
+          backgroundColor: "white",
+        }}
+      >
+        <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
+          <View
+            style={{
+              width: 20,
+              height: 20,
+              backgroundColor: "#FFFFFF",
+              borderRadius: 5,
+            }}
+          />
+
+          <Text style={{ marginLeft: 16, color: "#C4B1AE", fontSize: 16, lineHeight: 22 }}>{item.categoryName}</Text>
+        </View>
+
+        {/* Expenses */}
+        <View style={{ justifyContent: "center" }}>
+          <Text style={{ color: "#C4B1AE", fontSize: 16, lineHeight: 22 }}>
+            {item.amount} Р - {item.percentString}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+
+    return (
+      <View style={{ padding: 15 }}>
+        <FlatList data={data} renderItem={renderItem} keyExtractor={item => item.categoryId} />
+      </View>
+    );
+  }
+
   return (
     <View style={{ alignItems: "center", justifyContent: "center" }}>
       <VictoryPie
-        data={[
-          { x: "Cats", y: 30 },
-          { x: "Dogs", y: 30 },
-          { x: "Birds", y: 30 },
-        ]}
+        data={victoryPieData}
         style={{
           labels: { fill: "white", fontSize: 16, lineHeight: 22 },
           parent: {
@@ -30,6 +71,9 @@ const CardStatisticsPie = ({ data }) => {
       />
 
       <View style={{ position: "absolute", top: "42%", left: "42%" }}></View>
+      <ScrollView horizontal={true} contentContainerStyle={{ paddingBottom: 60 }}>
+        <View>{renderExpenseSummary(data)}</View>
+      </ScrollView>
     </View>
   );
 };
