@@ -13,6 +13,7 @@
   "dependencies": {
     "@babel/runtime": "^7.20.6",
     "@nivo/pie": "^0.80.0",
+    "@react-native-community/datetimepicker": "6.5.2",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
     "@unimodules/react-native-adapter": "^6.3.9",

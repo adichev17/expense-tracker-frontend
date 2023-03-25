@@ -16,6 +16,66 @@ interface IExpenseStatistics {
   amount: number;
 }
 
+const testData = {
+  card: {
+    id: 1,
+    balance: 600.0,
+    name: "Кошелек 1",
+    colorId: 2,
+    created: "2023-03-21T19:26:25.4673902",
+  },
+  transactions: [
+    {
+      id: 4,
+      comment: "Зарплата",
+      amount: 400.0,
+      category: {
+        id: 5,
+        categoryName: "Зарплата",
+        imageUri: "https://img.icons8.com/fluency/64/money-transfer.png",
+        actionTypeId: 2,
+      },
+      date: "2023-03-21T19:26:25.4674044",
+    },
+    {
+      id: 3,
+      comment: "Оплата общежития",
+      amount: 400.0,
+      category: {
+        id: 4,
+        categoryName: "Недвижимость",
+        imageUri: "https://img.icons8.com/fluency/64/real-estate.png",
+        actionTypeId: 1,
+      },
+      date: "2023-03-21T19:26:25.467404",
+    },
+    {
+      id: 2,
+      comment: "Магазин Пятерочка",
+      amount: 85.0,
+      category: {
+        id: 1,
+        categoryName: "Продукты",
+        imageUri: "https://img.icons8.com/fluency/64/fast-moving-consumer-goods.png",
+        actionTypeId: 1,
+      },
+      date: "2023-03-21T19:26:25.4674037",
+    },
+    {
+      id: 1,
+      comment: "Магазин Магнолия",
+      amount: 35.0,
+      category: {
+        id: 1,
+        categoryName: "Продукты",
+        imageUri: "https://img.icons8.com/fluency/64/fast-moving-consumer-goods.png",
+        actionTypeId: 1,
+      },
+      date: "2023-03-21T19:26:25.4674033",
+    },
+  ],
+};
+
 const CardStatisticsScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
   const [statistics, setStatistics] = useState<IExpenseStatistics[]>([]);
 
@@ -54,72 +114,12 @@ const CardStatisticsScreen: FunctionComponent<IScreen> = ({ navigation, route })
     });
   }
 
-  const testData = {
-    card: {
-      id: 1,
-      balance: 600.0,
-      name: "Кошелек 1",
-      colorId: 2,
-      created: "2023-03-21T19:26:25.4673902",
-    },
-    transactions: [
-      {
-        id: 4,
-        comment: "Зарплата",
-        amount: 400.0,
-        category: {
-          id: 5,
-          categoryName: "Зарплата",
-          imageUri: "https://img.icons8.com/fluency/64/money-transfer.png",
-          actionTypeId: 2,
-        },
-        date: "2023-03-21T19:26:25.4674044",
-      },
-      {
-        id: 3,
-        comment: "Оплата общежития",
-        amount: 400.0,
-        category: {
-          id: 4,
-          categoryName: "Недвижимость",
-          imageUri: "https://img.icons8.com/fluency/64/real-estate.png",
-          actionTypeId: 1,
-        },
-        date: "2023-03-21T19:26:25.467404",
-      },
-      {
-        id: 2,
-        comment: "Магазин Пятерочка",
-        amount: 85.0,
-        category: {
-          id: 1,
-          categoryName: "Продукты",
-          imageUri: "https://img.icons8.com/fluency/64/fast-moving-consumer-goods.png",
-          actionTypeId: 1,
-        },
-        date: "2023-03-21T19:26:25.4674037",
-      },
-      {
-        id: 1,
-        comment: "Магазин Магнолия",
-        amount: 35.0,
-        category: {
-          id: 1,
-          categoryName: "Продукты",
-          imageUri: "https://img.icons8.com/fluency/64/fast-moving-consumer-goods.png",
-          actionTypeId: 1,
-        },
-        date: "2023-03-21T19:26:25.4674033",
-      },
-    ],
-  };
-
   return (
     <TheLayout>
       <TopPanel withBack navigation={navigation} backPathname="Card" backParams={{ id: route.params.cardId }} />
       <View style={styles.body}>
-        <Label>Расходы</Label>
-        <CardStatisticsPie data={statistics} />
+        <Label>Статистика расходов</Label>
+        <CardStatisticsPie data={testData} />
       </View>
     </TheLayout>
   );
