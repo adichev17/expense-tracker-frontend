@@ -151,7 +151,6 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
       <View style={styles.container}>
         <View style={styles.cardsContainer}>
           <ScrollView horizontal>
-            <AddCard navigation={navigation} />
             {cards.map(card => {
               return (
                 <MinCard
@@ -164,6 +163,7 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
                 />
               );
             })}
+            <AddCard navigation={navigation} />
           </ScrollView>
         </View>
         <View style={styles.body}>

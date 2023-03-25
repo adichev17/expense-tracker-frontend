@@ -30,7 +30,7 @@ const Card: FunctionComponent<ICard> = ({
         }
       }}
     >
-      <LinearGradient colors={AppConstants.CardSkins[colorId].colors} end={{ x: 0.9, y: 0.2 }} style={styles.minCard}>
+      <View style={{ backgroundColor: AppConstants.CardSkins[colorId].colors, ...styles.minCard }}>
         <Text style={styles.name}>{name}</Text>
         <View>
           <Text style={styles.price}>{toPriceFormat(balance)} ₽</Text>
@@ -53,7 +53,7 @@ const Card: FunctionComponent<ICard> = ({
           </Text>
           */}
         </View>
-      </LinearGradient>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     fontFamily: AppConstants.FontExtra,
     fontSize: 18,
   },
-  name: { 
+  name: {
     fontSize: 20,
   },
   typeBalance: {

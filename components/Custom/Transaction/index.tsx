@@ -42,7 +42,7 @@ const Transaction: FunctionComponent<ITransactionC> = ({ navigation, data = {} }
 
 const styles = StyleSheet.create({
   transaction: {
-    backgroundColor: "#1E1E2D",
+    backgroundColor: "#2F2D2D",
     height: 75,
     width: "100%",
     paddingHorizontal: 12,
