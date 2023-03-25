@@ -19,22 +19,14 @@ const CardStatisticsPie = ({ data }) => {
         style={{
           flexDirection: "row",
           height: 40,
-          paddingHorizontal: 30,
-          borderRadius: 10,
-          backgroundColor: "white",
+          borderRadius: 13,
+          paddingHorizontal: 20,
+          backgroundColor: "#858786",
+          marginBottom: 10,
         }}
       >
-        <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
-          <View
-            style={{
-              width: 20,
-              height: 20,
-              backgroundColor: "#FFFFFF",
-              borderRadius: 5,
-            }}
-          />
-
-          <Text style={{ marginLeft: 16, color: "#C4B1AE", fontSize: 16, lineHeight: 22 }}>{item.categoryName}</Text>
+        <View style={{ flex: 1, flexDirection: "row", alignItems: "center", marginRight: 40 }}>
+          <Text style={{ marginLeft: 6, color: "#C4B1AE", fontSize: 16, lineHeight: 21 }}>{item.categoryName}</Text>
         </View>
 
         {/* Expenses */}
