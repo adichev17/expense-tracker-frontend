@@ -15,7 +15,7 @@ const ExpenseType: FunctionComponent<IExpenseType> = ({ onPressHandler = () => {
   return (
     <TouchableOpacity activeOpacity={AppConstants.ActiveOpacity} onPress={onPressHandler}>
       <Animatable.View transition="opacity" style={{ opacity: isActive ? 1 : 0.85 }}>
-        <LinearGradient style={[styles.incomeType, isActive ? styles.shadow : {}]} colors={["#FACCD2", "#FECDF4"]}>
+        <LinearGradient style={[styles.incomeType, isActive ? styles.shadow : {}]} colors={["#EB9486", "#EB9486"]}>
           <Image source={data.image} style={styles.image} />
           <Text style={styles.text}>{data.title}</Text>
         </LinearGradient>
@@ -26,8 +26,8 @@ const ExpenseType: FunctionComponent<IExpenseType> = ({ onPressHandler = () => {
 
 const styles = StyleSheet.create({
   incomeType: {
-    width: Dimensions.get("window").width / 2.8 - 33,
-    height: Dimensions.get("window").width / 2.8 - 33,
+    width: Dimensions.get("window").width / 2.8 - 40,
+    height: Dimensions.get("window").width / 2.8 - 40,
     borderRadius: 12,
     marginTop: 15,
     display: "flex",
@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   image: {
-    width: Dimensions.get("window").width / 4 - 33,
-    height: Dimensions.get("window").width / 4 - 33,
+    width: Dimensions.get("window").width / 4 - 45,
+    height: Dimensions.get("window").width / 4 - 45,
   },
   text: {
     marginTop: 8,

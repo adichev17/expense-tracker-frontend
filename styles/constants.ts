@@ -11,7 +11,7 @@ const AppConstants = {
     { colors: "#B09393", id: 0 },
     { colors: "#193339", id: 1 },
     { colors: "#B09393", id: 2 },
-    { colors: "##B09393", id: 3 },
+    { colors: "#B09393", id: 3 },
     { colors: "#B09393", id: 4 },
   ],
 };

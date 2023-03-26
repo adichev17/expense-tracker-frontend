@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Dimensions, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AppConstants from "styles/constants";
 
@@ -17,9 +17,9 @@ const ExpenseButton: FunctionComponent<IExpenseButton> = ({ navigation, route })
 
   return (
     <TouchableOpacity onPress={onPressHandler} activeOpacity={AppConstants.ActiveOpacity}>
-      <LinearGradient colors={["#FACCD2", "#FECDF4"]} end={{ x: 0.9, y: 0.2 }} style={[styles.button, styles.shadow]}>
+      <View style={[styles.button, styles.shadow]}>
         <Text style={styles.text}>Расход</Text>
-      </LinearGradient>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#EB9486",
   },
   shadow: {
     shadowColor: "#FACCD2",

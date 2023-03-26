@@ -10,7 +10,7 @@ interface IButton {
 
 const DefaultButton: FunctionComponent<IButton> = ({ children }) => {
   return (
-    <LinearGradient colors={["#CCF0FA", "#E2D1F0"]} end={{ x: 0.9, y: 0.2 }} style={styles.defaultButton}>
+    <LinearGradient colors={["#F9F8F8", "#F9F8F8"]} end={{ x: 0.9, y: 0.1 }} style={styles.defaultButton}>
       <Text style={styles.text}>{children}</Text>
     </LinearGradient>
   );
@@ -18,7 +18,7 @@ const DefaultButton: FunctionComponent<IButton> = ({ children }) => {
 
 const DangerButton: FunctionComponent<IButton> = ({ children }) => {
   return (
-    <LinearGradient colors={["#FACCD2", "#FECDF4"]} end={{ x: 0.9, y: 0.2 }} style={styles.defaultButton}>
+    <LinearGradient colors={["#EB9486", "#EB9486"]} end={{ x: 0.9, y: 0.2 }} style={styles.defaultButton}>
       <Text style={styles.text}>{children}</Text>
     </LinearGradient>
   );

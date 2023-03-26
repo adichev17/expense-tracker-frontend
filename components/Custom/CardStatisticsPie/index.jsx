@@ -8,8 +8,8 @@ import { VictoryPie } from "victory-native";
 
 const CardStatisticsPie = ({ data }) => {
   const [dataStatistics, setDataStatistics] = useState();
-  const [startDate, setStartDate] = useState(new Date(1598051730000));
-  const [endDate, setEndDate] = useState(new Date(1598051730000));
+  const [startDate, setStartDate] = useState(new Date(2023, 1, 1));
+  const [endDate, setEndDate] = useState(new Date(2023, 4, 1));
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
 
@@ -150,8 +150,25 @@ const CardStatisticsPie = ({ data }) => {
   return (
     <View style={{ alignItems: "center", justifyContent: "center" }}>
       <View style={{ flexDirection: "row", marginTop: 15 }}>
-        <DateTimePicker testID="dateTimeStart" value={startDate} mode={mode} is24Hour={true} onChange={onChangeStart} />
-        <DateTimePicker testID="dateTimeEnd" value={endDate} mode={mode} is24Hour={true} onChange={onChangeEnd} />
+        <DateTimePicker
+          themeVariant="dark"
+          locale="ru"
+          maximumDate={endDate}
+          testID="dateTimeStart"
+          value={startDate}
+          mode={mode}
+          is24Hour={true}
+          onChange={onChangeStart}
+        />
+        <DateTimePicker
+          themeVariant="dark"
+          locale="ru"
+          testID="dateTimeEnd"
+          value={endDate}
+          mode={mode}
+          is24Hour={true}
+          onChange={onChangeEnd}
+        />
       </View>
       {renderDiagramPie(dataStatistics)}
       <View style={{ position: "absolute", top: "42%", left: "42%" }}></View>

@@ -41,7 +41,7 @@ const ExpenseCategoryScreen: FunctionComponent<IScreen> = ({ navigation, route }
           />
         </View>
         <View style={styles.actionButton}>
-          <Button onPressHandler={onCreateExpenseCategoryPressHandler} isValidate={validateData()}>
+          <Button variant="danger" onPressHandler={onCreateExpenseCategoryPressHandler} isValidate={validateData()}>
             Добавить категорию
           </Button>
         </View>

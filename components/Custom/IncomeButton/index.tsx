@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Dimensions, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import AppConstants from "styles/constants";
 import BigBlackPlus from "components/SVGs/BigBlackPlus";
@@ -19,13 +19,9 @@ const IncomeButton: FunctionComponent<IIncomeButton> = ({ navigation, route }) =
 
   return (
     <TouchableOpacity onPress={onPressHandler} activeOpacity={AppConstants.ActiveOpacity}>
-      <LinearGradient
-        style={[styles.expandButton, styles.shadow]}
-        end={{ x: 0.9, y: 0.2 }}
-        colors={["#CCF0FA", "#E5E5E5"]}
-      >
+      <View style={[styles.expandButton, styles.shadow]}>
         <Text style={styles.header}>Доход</Text>
-      </LinearGradient>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -37,6 +33,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#F9F8F8",
   },
   shadow: {
     shadowColor: "#D6EBF1",

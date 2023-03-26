@@ -28,7 +28,7 @@ const CardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
     id: 1,
     name: "Кошелек 1",
     balance: 50000,
-    colorId: 1,
+    colorId: 2,
   };
   const categoryProduct = {
     id: 1,

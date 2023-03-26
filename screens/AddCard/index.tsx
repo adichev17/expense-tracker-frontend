@@ -39,7 +39,7 @@ const AddCardScreen: FunctionComponent<IScreen> = ({ navigation }) => {
   return (
     <TheLayout>
       <TopPanel navigation={navigation} withBack isGoBack />
-      <View style={styles.body}>          
+      <View style={styles.body}>
         <View style={styles.mt}>
           <Label>Наименование кошелька</Label>
           <View style={styles.cardInfoContent}>
@@ -50,12 +50,12 @@ const AddCardScreen: FunctionComponent<IScreen> = ({ navigation }) => {
               placeholder="Введите наименование кошелька"
             />
           </View>
-          <Label>Цвет кошелька</Label>  
+          <Label>Цвет кошелька</Label>
           <View style={styles.skins}>
-          {AppConstants.CardSkins.map(skin => {
-            return <Skin key={skin.id} setState={setSkinID} state={skinID} colors={skin.colors} id={skin.id} />;
-          })}
-        </View>
+            {AppConstants.CardSkins.map(skin => {
+              return <Skin key={skin.id} setState={setSkinID} state={skinID} color={skin.colors} id={skin.id} />;
+            })}
+          </View>
         </View>
 
         <View style={styles.createButton}>
