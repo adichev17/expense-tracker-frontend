@@ -13,6 +13,8 @@ const CardStatisticsPie = ({ data }) => {
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
 
+  const colorDataSet = ["green", "green"];
+
   useEffect(() => {
     var generatedData = generateDataStatistics(data);
     setDataStatistics(generatedData);
@@ -44,6 +46,7 @@ const CardStatisticsPie = ({ data }) => {
         const model = {};
         model.amount = item.amount;
         model.categoryId = item.category.id;
+        model.colorId = item.category.colorId;
         model.categoryName = item.category.categoryName;
         model.percent = Math.round((item.amount / commonaAmount) * 100);
         model.percentString = ((item.amount / commonaAmount) * 100).toFixed(0).toString() + "%";
@@ -106,9 +109,11 @@ const CardStatisticsPie = ({ data }) => {
             colorScale={["#006400", "#708090", "#9370DB", "cyan", "navy", "black"]}
           />
 
-          <View style={{ position: "absolute", top: "42%", left: "42%" }}>
-            <Text style={{ fontSize: 30, lineHeight: 36, textAlign: "center" }}>{renderData.length}</Text>
-            <Text style={{ fontSize: 16, lineHeight: 22, textAlign: "center" }}>Категории</Text>
+          <View style={{ position: "absolute", top: "41%", left: "40%" }}>
+            <Text style={{ fontSize: 30, lineHeight: 36, textAlign: "center", color: "white" }}>
+              {renderData.length}
+            </Text>
+            <Text style={{ fontSize: 16, lineHeight: 22, textAlign: "center", color: "white" }}>Категории</Text>
           </View>
         </View>
       );
@@ -123,11 +128,13 @@ const CardStatisticsPie = ({ data }) => {
           height: 40,
           borderRadius: 13,
           paddingHorizontal: 20,
-          backgroundColor: "#858786",
+          backgroundColor: "#2F2D2D",
+          color: "white",
           marginBottom: 10,
         }}
       >
         <View style={{ flex: 1, flexDirection: "row", alignItems: "center", marginRight: 40 }}>
+          <View style={{ backgroundColor: colorDataSet[item.colorId], width: 15, height: 15 }}></View>
           <Text style={{ marginLeft: 6, color: "#C4B1AE", fontSize: 16, lineHeight: 21 }}>{item.categoryName}</Text>
         </View>
 

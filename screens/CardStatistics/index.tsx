@@ -14,6 +14,7 @@ interface IExpenseStatistics {
   percent: number;
   percentString: string;
   amount: number;
+  colorId: number;
 }
 
 const testData = {
@@ -46,6 +47,7 @@ const testData = {
         categoryName: "Недвижимость",
         imageUri: "https://img.icons8.com/fluency/64/real-estate.png",
         actionTypeId: 1,
+        colorId: 2,
       },
       date: "2023-03-21T19:26:25.467404",
     },
@@ -58,6 +60,7 @@ const testData = {
         categoryName: "Продукты",
         imageUri: "https://img.icons8.com/fluency/64/fast-moving-consumer-goods.png",
         actionTypeId: 1,
+        colorId: 1,
       },
       date: "2023-03-21T19:26:25.4674037",
     },
@@ -70,6 +73,7 @@ const testData = {
         categoryName: "Продукты",
         imageUri: "https://img.icons8.com/fluency/64/fast-moving-consumer-goods.png",
         actionTypeId: 1,
+        colorId: 1,
       },
       date: "2023-03-21T19:26:25.4674033",
     },
@@ -98,6 +102,7 @@ const CardStatisticsScreen: FunctionComponent<IScreen> = ({ navigation, route })
         const model = {} as IExpenseStatistics;
         model.amount = item.amount;
         model.categoryId = item.category.id;
+        model.colorId = item.category.colorId ?? 0; // its okey
         model.categoryName = item.category.categoryName;
         model.percent = Math.round((item.amount / commonaAmount) * 100);
         model.percentString = ((item.amount / commonaAmount) * 100).toFixed(0).toString() + "%";
@@ -118,7 +123,9 @@ const CardStatisticsScreen: FunctionComponent<IScreen> = ({ navigation, route })
     <TheLayout>
       <TopPanel withBack navigation={navigation} backPathname="Card" backParams={{ id: route.params.cardId }} />
       <View style={styles.body}>
-        <Label>Статистика расходов</Label>
+        <View style={styles.bodyLabel}>
+          <Label>Статистика расходов</Label>
+        </View>
         <CardStatisticsPie data={testData} />
       </View>
     </TheLayout>
@@ -150,6 +157,9 @@ const styles = StyleSheet.create({
   },
   bodyComment: {
     marginTop: 15,
+  },
+  bodyLabel: {
+    marginBottom: 25,
   },
 });
 
