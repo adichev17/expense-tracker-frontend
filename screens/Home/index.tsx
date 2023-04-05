@@ -11,6 +11,7 @@ import Goal from "components/Custom/Goal";
 import Transaction from "components/Custom/Transaction";
 import TopPanel from "components/UI/TopPanel";
 import Label from "components/UI/Label";
+import CommonStatisticsPie from "components/Custom/CommonStatistics";
 
 const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
   const [cards, setCards] = useState<ICard[]>([]);
@@ -165,6 +166,10 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
             })}
             <AddCard navigation={navigation} />
           </ScrollView>
+        </View>
+        <View style={{ marginLeft: 30 }}>
+          <Label>Расходы за неделю</Label>
+          <CommonStatisticsPie></CommonStatisticsPie>
         </View>
         <View style={styles.body}>
           {Boolean(transactions.length) && (
