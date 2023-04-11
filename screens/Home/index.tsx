@@ -12,11 +12,14 @@ import Transaction from "components/Custom/Transaction";
 import TopPanel from "components/UI/TopPanel";
 import Label from "components/UI/Label";
 import CommonStatisticsPie from "components/Custom/CommonStatistics";
+import CommonStatisticsIncomeLine from "components/Custom/CommonStatisticsIncome";
+import SelectDropdown from "react-native-select-dropdown";
 
 const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
   const [cards, setCards] = useState<ICard[]>([]);
   const [transactions, setTransactions] = useState<ITransaction[]>([]);
 
+  const countries = ["неделя", "месяц", "3 месяца", "1 год"];
   function onGoToTransactions(): void {
     navigation.push("Transactions");
   }
@@ -151,6 +154,10 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
       <TopPanel />
       <View style={styles.container}>
         <View style={styles.cardsContainer}>
+          <View style={{ marginBottom: 20 }}>
+            <Label>Кошельки</Label>
+          </View>
+
           <ScrollView horizontal>
             {cards.map(card => {
               return (
@@ -167,10 +174,109 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
             <AddCard navigation={navigation} />
           </ScrollView>
         </View>
-        <View style={{ marginLeft: 30 }}>
-          <Label>Расходы за неделю</Label>
-          <CommonStatisticsPie></CommonStatisticsPie>
+        <View>
+          <ScrollView horizontal>
+            <View style={{ marginTop: 20, width: 410, paddingHorizontal: AppConstants.PaddingHorizontal }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <View style={{ paddingTop: 3 }}>
+                  <Label>Последние расходы</Label>
+                </View>
+                <View>
+                  <SelectDropdown
+                    data={countries}
+                    defaultValue="неделя"
+                    buttonStyle={{
+                      backgroundColor: "#0F0E0E",
+                      borderBottomColor: "white",
+                      borderBottomWidth: 1,
+                      width: 100,
+                      height: 30,
+                      padding: 0,
+                    }}
+                    buttonTextStyle={{
+                      color: "white",
+                      fontWeight: "bold",
+                      fontStyle: "italic",
+                      borderBottomWidth: 1,
+                      borderBottomColor: "white",
+                    }}
+                    onSelect={(selectedItem, index) => {
+                      console.log(selectedItem, index);
+                    }}
+                    buttonTextAfterSelection={(selectedItem, index) => {
+                      // text represented after item is selected
+                      // if data array is an array of objects then return selectedItem.property to render after item is selected
+                      return selectedItem;
+                    }}
+                    rowTextForSelection={(item, index) => {
+                      // text represented for each item in dropdown
+                      // if data array is an array of objects then return item.property to represent item in dropdown
+                      return item;
+                    }}
+                  />
+                </View>
+              </View>
+              <View style={{ marginLeft: 30 }}>
+                <CommonStatisticsPie></CommonStatisticsPie>
+              </View>
+            </View>
+            <View style={{ marginTop: 20, width: 410, paddingHorizontal: AppConstants.PaddingHorizontal }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <View style={{ paddingTop: 3 }}>
+                  <Label>Последние доходы</Label>
+                </View>
+                <View>
+                  <SelectDropdown
+                    data={countries}
+                    defaultValue="неделя"
+                    buttonStyle={{
+                      backgroundColor: "#0F0E0E",
+                      borderBottomColor: "white",
+                      borderBottomWidth: 1,
+                      width: 100,
+                      height: 30,
+                      padding: 0,
+                    }}
+                    buttonTextStyle={{
+                      color: "white",
+                      fontWeight: "bold",
+                      fontStyle: "italic",
+                      borderBottomWidth: 1,
+                      borderBottomColor: "white",
+                    }}
+                    onSelect={(selectedItem, index) => {
+                      console.log(selectedItem, index);
+                    }}
+                    buttonTextAfterSelection={(selectedItem, index) => {
+                      // text represented after item is selected
+                      // if data array is an array of objects then return selectedItem.property to render after item is selected
+                      return selectedItem;
+                    }}
+                    rowTextForSelection={(item, index) => {
+                      // text represented for each item in dropdown
+                      // if data array is an array of objects then return item.property to represent item in dropdown
+                      return item;
+                    }}
+                  />
+                </View>
+              </View>
+              <View style={{ marginLeft: 30 }}>
+                <CommonStatisticsIncomeLine></CommonStatisticsIncomeLine>
+              </View>
+            </View>
+          </ScrollView>
         </View>
+
         <View style={styles.body}>
           {Boolean(transactions.length) && (
             <View>
