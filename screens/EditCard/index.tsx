@@ -14,49 +14,49 @@ import PaymentSystem from "components/UI/PaymentSystem";
 const EditCardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
   const [activePaymentSystem, setActivePaymentSystem] = useState<IPaymentSystem>("Visa");
   const [activeSkin, setActiveSkin] = useState<number>(0);
-  const [cardNumber, setCardNumber] = useState<string>("");
+  const [cardNumber, setCardNumber] = useState<string>("Кошелек 1");
   const [endDate, setEndDate] = useState<string>("");
 
   function onUpdateCardPressHandler(): void {
-    Database.transaction((transaction: SQLTransaction) => {
-      transaction.executeSql("UPDATE cards SET number = ?, endDate = ?, paymentSystem = ?, colorId = ? WHERE id = ?", [
-        cardNumber,
-        endDate,
-        activePaymentSystem,
-        activeSkin,
-        route.params.id,
-      ]);
-    });
+    // Database.transaction((transaction: SQLTransaction) => {
+    //   transaction.executeSql("UPDATE cards SET number = ?, endDate = ?, paymentSystem = ?, colorId = ? WHERE id = ?", [
+    //     cardNumber,
+    //     endDate,
+    //     activePaymentSystem,
+    //     activeSkin,
+    //     route.params.id,
+    //   ]);
+    // });
     navigation.push("Home");
   }
 
   function onRemoveCardPressHandler(): void {
-    Database.transaction((transaction: SQLTransaction) => {
-      transaction.executeSql("DELETE FROM cards WHERE id = ?", [route.params.id]);
-      transaction.executeSql("DELETE FROM transactions WHERE cardId = ?", [route.params.id]);
-      transaction.executeSql("SELECT * FROM cards", [], (transaction: SQLTransaction, result: SQLResultSet) => {
-        if (result.rows.length) {
-          navigation.push("Home");
-        } else {
-          navigation.push("Start");
-        }
-      });
-    });
+    // Database.transaction((transaction: SQLTransaction) => {
+    //   transaction.executeSql("DELETE FROM cards WHERE id = ?", [route.params.id]);
+    //   transaction.executeSql("DELETE FROM transactions WHERE cardId = ?", [route.params.id]);
+    //   transaction.executeSql("SELECT * FROM cards", [], (transaction: SQLTransaction, result: SQLResultSet) => {
+    //     if (result.rows.length) {
+    //       navigation.push("Home");
+    //     } else {
+    //       navigation.push("Start");
+    //     }
+    //   });
+    // });
   }
 
   useEffect(() => {
-    Database.transaction((transaction: SQLTransaction) => {
-      transaction.executeSql(
-        "SELECT * FROM cards WHERE id = ?",
-        [route.params.id],
-        (transaction: SQLTransaction, result: SQLResultSet) => {
-          setActiveSkin(Number(result.rows._array[0].colorId));
-          setActivePaymentSystem(result.rows._array[0].paymentSystem);
-          setCardNumber(String(result.rows._array[0].number));
-          setEndDate(result.rows._array[0].endDate.replace("/", "").replace("/", ""));
-        }
-      );
-    });
+    // Database.transaction((transaction: SQLTransaction) => {
+    //   transaction.executeSql(
+    //     "SELECT * FROM cards WHERE id = ?",
+    //     [route.params.id],
+    //     (transaction: SQLTransaction, result: SQLResultSet) => {
+    //       setActiveSkin(Number(result.rows._array[0].colorId));
+    //       setActivePaymentSystem(result.rows._array[0].paymentSystem);
+    //       setCardNumber(String(result.rows._array[0].number));
+    //       setEndDate(result.rows._array[0].endDate.replace("/", "").replace("/", ""));
+    //     }
+    //   );
+    // });
   }, []);
 
   return (
@@ -66,19 +66,19 @@ const EditCardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
         <Label>Изменить цвет</Label>
         <View style={styles.skins}>
           {AppConstants.CardSkins.map(skin => {
-            return <Skin key={skin.id} setState={setActiveSkin} state={activeSkin} {...skin} />;
+            return <Skin key={skin.id} setState={setActiveSkin} state={activeSkin} color={skin.colors} {...skin} />;
           })}
         </View>
-        <View style={styles.mt}>   
-        <Label>Изменить наименование карты</Label>  
-        <View style={styles.cardInfoContent}>
-        <Input
-            defaultValue={cardNumber}
-            state={cardNumber}
-            setState={setCardNumber}
-            placeholder="Введите наименование карты"
-          /> 
-        </View>
+        <View style={styles.mt}>
+          <Label>Изменить наименование кошелька</Label>
+          <View style={styles.cardInfoContent}>
+            <Input
+              defaultValue={cardNumber}
+              state={cardNumber}
+              setState={setCardNumber}
+              placeholder="Введите наименование карты"
+            />
+          </View>
 
           {/* 
           <Label>Edit card info</Label>
@@ -132,7 +132,7 @@ const EditCardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
         </View>
         <View style={styles.removeButton}>
           <Button variant="danger" onPressHandler={onRemoveCardPressHandler}>
-            Удалить
+            Удалить кошелек
           </Button>
         </View>
       </View>

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { TouchableOpacity, StyleSheet, Dimensions, View } from "react-native";
+import { TouchableOpacity, StyleSheet, Dimensions, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Animatable from "react-native-animatable";
 import AppConstants from "styles/constants";
@@ -19,8 +19,10 @@ const Skin: FunctionComponent<ISkin> = ({ id, state, color, setState = () => {} 
         setState(id);
       }}
     >
-      <Animatable.View transition="opacity" style={state === id ? {} : { opacity: 0.7 }}>
-        <View style={{ ...[styles.skin, state === id && styles.withShadow], backgroundColor: color }}></View>
+      <Animatable.View transition="opacity" style={state === id ? {} : { opacity: 0.5 }}>
+        <View style={{ backgroundColor: color, padding: 10, height: 50, width: 50, borderRadius: 30 }}>
+          <Text></Text>
+        </View>
       </Animatable.View>
     </TouchableOpacity>
   );
@@ -28,9 +30,9 @@ const Skin: FunctionComponent<ISkin> = ({ id, state, color, setState = () => {} 
 
 const styles = StyleSheet.create({
   skin: {
-    height: Dimensions.get("window").width / 5 - 20,
-    width: Dimensions.get("window").width / 5 - 20,
-    borderRadius: 40,
+    height: 80,
+    width: 80,
+    padding: 10,
   },
   withShadow: {
     opacity: 1,

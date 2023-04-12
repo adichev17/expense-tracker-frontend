@@ -9,10 +9,10 @@ const AppConstants = {
   FontRegular: "Lato-Regular",
   CardSkins: [
     { colors: "#B09393", id: 0 },
-    { colors: "#193339", id: 1 },
-    { colors: "#B09393", id: 2 },
-    { colors: "#B09393", id: 3 },
-    { colors: "#B09393", id: 4 },
+    { colors: "#4464AD", id: 1 },
+    { colors: "#F8F7FF", id: 2 },
+    { colors: "#DB9D47", id: 3 },
+    //{ colors: "#B09393", id: 4 },
   ],
 };
 

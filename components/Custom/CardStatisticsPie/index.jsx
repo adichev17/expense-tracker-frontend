@@ -12,6 +12,7 @@ const CardStatisticsPie = ({ data }) => {
   const [endDate, setEndDate] = useState(new Date(2023, 4, 1));
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
+  const [commonAmountExpense, setCommonAmountExpense] = useState(0);
 
   const colorDataSet = ["green", "green"];
 
@@ -21,6 +22,7 @@ const CardStatisticsPie = ({ data }) => {
   }, []);
 
   useEffect(() => {
+    setCommonAmountExpense(0);
     var generatedData = generateDataStatistics(data);
     setDataStatistics(generatedData);
   }, [startDate]);
@@ -37,6 +39,7 @@ const CardStatisticsPie = ({ data }) => {
       var commonaAmount = expenseTestData.transactions
         .map(ca => ca.amount)
         .reduce((accumulator, current) => accumulator + current, 0);
+      setCommonAmountExpense(commonaAmount);
       if (index !== -1) {
         expenseStatistics[index].amount += item.amount;
         expenseStatistics[index].percent = Math.round((expenseStatistics[index].amount / commonaAmount) * 100);
@@ -141,7 +144,7 @@ const CardStatisticsPie = ({ data }) => {
         {/* Expenses */}
         <View style={{ justifyContent: "center" }}>
           <Text style={{ color: "#C4B1AE", fontSize: 16, lineHeight: 22 }}>
-            {item.amount} Р - {item.percentString}
+            {item.amount} ₽ - {item.percentString}
           </Text>
         </View>
       </TouchableOpacity>
@@ -178,6 +181,11 @@ const CardStatisticsPie = ({ data }) => {
         />
       </View>
       {renderDiagramPie(dataStatistics)}
+      <View>
+        <Text style={{ fontSize: 18, lineHeight: 22, textAlign: "center", color: "white" }}>
+          Сумма расходов: {commonAmountExpense} ₽
+        </Text>
+      </View>
       <View style={{ position: "absolute", top: "42%", left: "42%" }}></View>
       <ScrollView horizontal={true} contentContainerStyle={{ paddingBottom: 60 }}>
         <View>{renderExpenseSummary(dataStatistics)}</View>

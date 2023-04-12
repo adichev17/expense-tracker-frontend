@@ -205,6 +205,15 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
                       borderBottomWidth: 1,
                       borderBottomColor: "white",
                     }}
+                    dropdownStyle={{
+                      borderRadius: 10,
+                      backgroundColor: "#1E1E2D",
+                    }}
+                    rowTextStyle={{
+                      color: "white",
+                      fontWeight: "bold",
+                      fontStyle: "italic",
+                    }}
                     onSelect={(selectedItem, index) => {
                       console.log(selectedItem, index);
                     }}
@@ -256,6 +265,15 @@ const HomeScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
                     }}
                     onSelect={(selectedItem, index) => {
                       console.log(selectedItem, index);
+                    }}
+                    dropdownStyle={{
+                      borderRadius: 10,
+                      backgroundColor: "#1E1E2D",
+                    }}
+                    rowTextStyle={{
+                      color: "white",
+                      fontWeight: "bold",
+                      fontStyle: "italic",
                     }}
                     buttonTextAfterSelection={(selectedItem, index) => {
                       // text represented after item is selected
