@@ -12,6 +12,7 @@ import Transaction from "components/Custom/Transaction";
 import TopPanel from "components/UI/TopPanel";
 import Label from "components/UI/Label";
 import StatisticsButton from "components/Custom/StatisticsButton";
+import ScannerButton from "components/Custom/ScannerButton/scannerButton";
 
 const CardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
   const [card, setCard] = useState<ICard>();
@@ -122,6 +123,10 @@ const CardScreen: FunctionComponent<IScreen> = ({ navigation, route }) => {
           </View>
           <View style={styles.blockContent}>
             <StatisticsButton navigation={navigation} route={route} />
+            <View style={styles.rightButtons}>
+              {/* <TransferButton navigation={navigation} route={route} isActive={cardsLength > 1} /> */}
+              <ScannerButton navigation={navigation} route={route} />
+            </View>
           </View>
         </View>
         {Boolean(transactions.length) && (
